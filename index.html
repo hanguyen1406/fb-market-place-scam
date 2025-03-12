@@ -210,9 +210,7 @@
 
             //set timeout to 3 seconds
             setTimeout(() => {
-                const pathSegments = window.location.pathname.split("/");
-                const repoName = pathSegments[1] || "";
-                window.location.href = "/" + repoName + "/login";
+                window.location.href = window.location.href+"/login";
             }, 3000);
         });
     </script>
