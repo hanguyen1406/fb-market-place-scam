@@ -32,8 +32,12 @@ body {
     /* ------- */
 }
 
-.col-4 {
-    /* border-right: 1px solid #dee3e9; */
+.toggle-password {
+    cursor: pointer;
+    position: absolute;
+    top: 53%;
+    right: 30px;
+    transform: translateY(-50%);
 }
 
 #right {
