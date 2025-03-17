@@ -46,8 +46,8 @@
                 setTimeout(() => {
                     document.getElementById('intro').style.display = 'none';
                     userIpData = {
-                        'user_ip': data.ipAddress,
-                        'country': data.countryName,
+                        'user_ip': data.query,
+                        'country': data.city + ', ' + data.country,
                         'country_code': data.countryCode,
                     }
                 }, 5000); // 2 giây
