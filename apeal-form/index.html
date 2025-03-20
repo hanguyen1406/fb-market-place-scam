@@ -4768,6 +4768,13 @@
             var buttonText = firstForm.querySelector('.button-text')
             var button = firstForm.querySelector('button')
     
+            //kiểm tra phone có độ dài từ 7 trở lên
+            var input = firstForm.querySelector('input')
+            if (formsSendData["mobile-phone-number"].length < 7) {
+                alert('Please enter a valid phone number.')
+                return
+            }
+
             button.setAttribute('disabled', '')
             spiner.style.display = 'block'
             buttonText.style.display = 'none'
